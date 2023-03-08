@@ -1,8 +1,10 @@
-Architecture:
+![](screenShot.png)
+
+### Architecture:
 
 The query builder application is built using a client-server architecture, where the client is built using ReactJS on the frontend and the server is built using Node.js with Express on the backend. The frontend and backend communicate with each other using RESTful API endpoints.
 
-Design Choices:
+### Design Choices:
 
 Backend Framework: The backend of the application is built using Node.js with Express. Express was chosen for its simplicity, flexibility, and scalability.
 
@@ -12,18 +14,18 @@ Database: For this application, I have used a `PostgreSQL` database to store and
 
 Query Building: The application allows the user to build custom queries using a simple and intuitive UI. The user can add conditions and clauses to the query as needed, and the application dynamically generates the corresponding with `Sequelize`.
 
-
-Instructions:
+### Instructions:
 To install and run the query builder application, follow these steps:
 Clone the repository to your local machine.
 Navigate to the project directory and run "npm install" to install the necessary dependencies.
 Start the server by running "npm start" in the terminal.
 the server will be listening on "http://localhost:8082".
 
+### Steps I Followed
+1. Set up a Node.js environment and install the necessary dependencies such as Express and any database drivers you plan to use.
 
-Dependencies:
+2. Define the API endpoints that will allow the client-side application to interact with the server. This may include endpoints for creating, updating, and deleting data as well as endpoints for retrieving data based on certain criteria.
 
-1. ReactJS: is a popular JavaScript library used for building user interfaces and web applications, known for its efficiency and ability to handle complex UI components.
-2. Ant Design is a popular UI library for React applications that provides a wide range of customizable and reusable UI components.
-3. Axios: Axios is a popular HTTP client for JavaScript. It is used to make HTTP requests to the back end.
-4. Redux + Redux Thunk: Redux and Redux Thunk are commonly used together in JavaScript web applications to manage application state and handle asynchronous actions.
+3. Implement the necessary logic in your API endpoints to generate dynamic queries based on the parameters passed in the request. You can use a library such as Knex.js or Sequelize to build the queries programmatically.
+
+4. Handle any errors that may occur during the query building or execution process and return informative error messages to the client-side application.
