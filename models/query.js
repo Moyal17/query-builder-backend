@@ -1,5 +1,5 @@
 
-const Query = (sequelize, Sequelize, DataTypes) => sequelize.define("query", {
+const Query = (sequelize, Sequelize) => sequelize.define("query", {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,

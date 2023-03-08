@@ -11,30 +11,26 @@
   CONSTRAINT pk_movie PRIMARY KEY (movie_id)
 */
 
-const Movie = (sequelize, Sequelize) => sequelize.define("movie", {
-    movie_id: {
+const Actor = (sequelize, Sequelize) => sequelize.define("actor", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+    name: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    age: {
       type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true // Automatically gets converted to SERIAL for postgres
-    },
-    title: {
-      type: Sequelize.STRING(1000),
       allowNull: true
     },
-    budget: {
+    gender: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    popular: {
       type: Sequelize.INTEGER,
-      allowNull: true
-    },
-    homepage: {
-      type: Sequelize.STRING(1000),
-      allowNull: true
-    },
-    overview: {
-      type: Sequelize.STRING(1000),
-      allowNull: true
-    },
-    popularity: {
-      type: Sequelize.DECIMAL(12, 6),
       allowNull: true,
       validate: {
         isDecimal: true,
@@ -42,22 +38,15 @@ const Movie = (sequelize, Sequelize) => sequelize.define("movie", {
         min: 0,
       },
     },
-    release_date: {
+    birthday: {
       type: Sequelize.DATE,
       allowNull: true
     },
-    revenue: {
-      type: Sequelize.BIGINT,
+    valued: {
+      type: Sequelize.INTEGER,
       allowNull: true
     },
-    runtime: {
-      type: Sequelize.INTEGER,
-      validate: {
-        isInt: true
-      },
-      allowNull: true
-    }
   }
 );
 
-module.exports = Movie;
+module.exports = Actor;

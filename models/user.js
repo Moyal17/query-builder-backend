@@ -1,22 +1,22 @@
-const User = (sequelize, Sequelize, DataTypes) => sequelize.define("user", {
+const User = (sequelize, Sequelize) => sequelize.define("user", {
     // Attributes
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
     username: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       unique: true
     },
     email: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       validate: {
         isEmail: true
       }
     },
     password: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     }
   }
 );

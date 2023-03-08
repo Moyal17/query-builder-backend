@@ -1,63 +1,6 @@
 const db = require("../models");
 const Movie = db.movie;
-const Op = db.Op;
 const page = 'movieController';
-
-
-const handleDynamicMovieQuery = async (req, res) => {
-  const func = 'handleDynamicMovieQuery';
-  try {
-    // const query = req.body.payload;
-    const data = await Movie.findAll({
-      where: {
-        [Op.and]: [
-          {
-            budget: {
-              [Op.gte]: 55000000
-            }
-          },
-          {
-            popularity: {
-              [Op.gte]: 80
-            }
-          }
-        ]
-      }
-    });
-    // const data = await sequelize.query('SELECT title FROM movies')
-    const response = data.map((obj) => obj.dataValues);
-    console.log('data: ', response);
-    /*
-  Result {
-  command: 'SELECT',
-  rowCount: 18,
-  rows: [
-    { title: 'Star Wars' },
-    { title: 'Finding Nemo' },
-    { title: 'Forrest Gump' },
-    { title: 'American Beauty' },
-    { title: 'Raiders of the Lost Ark' },
-    { title: 'Indiana Jones and the Temple of Doom' },
-    { title: 'Indiana Jones and the Last Crusade' },
-    { title: 'Beverly Hills Cop' },
-    { title: 'Armageddon' },
-    { title: 'Beverly Hills Cop II' },
-    { title: 'Gladiator' },
-    { title: 'Back to the Future' },
-    { title: 'Predator' },
-    { title: 'The Untouchables' },
-    { title: 'Charlie and the Chocolate Factory' },
-    { title: 'The Lord of the Rings: The Fellowship of the Ring' },
-    { title: 'The Lord of the Rings: The Two Towers' },
-    { title: 'The Lord of the Rings: The Return of the King' }
-  ]
-} */
-    // res.status(200).json(data.rows);
-  } catch (e) {
-    console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    // res.status(419).json();
-  }
-};
 
 const getMovies = async (req, res) => {
   const func = 'getMovies';
@@ -96,12 +39,11 @@ const getMovies = async (req, res) => {
     res.status(419).json();
   }
 };
-
 const createMovies = async (req, res) => {
   const func = 'createMovies';
   try {
     const queryBody = [
-   /*     {
+       {
           "movie_id": 11,
           "title": "Star Wars",
           "budget": 11000000,
@@ -111,7 +53,7 @@ const createMovies = async (req, res) => {
           "release_date": "1977-05-25",
           "revenue": 775398007,
           "runtime": 121
-        },*/
+        },
         {
           "movie_id": 12,
           "title": "Finding Nemo",
@@ -300,36 +242,9 @@ const createMovies = async (req, res) => {
           "runtime": 201
         }
       ]
-    // const data = await sequelize.query('SELECT * FROM movies.movie')
     // Save Query in database
-    // const data = await Movie.bulkCreate(queryBody);    // const data = await sequelize.query('SELECT title FROM movies.movie')
-    console.log('data: ', data);
-    /*
-  Result {
-  command: 'SELECT',
-  rowCount: 18,
-  rows: [
-    { title: 'Star Wars' },
-    { title: 'Finding Nemo' },
-    { title: 'Forrest Gump' },
-    { title: 'American Beauty' },
-    { title: 'Raiders of the Lost Ark' },
-    { title: 'Indiana Jones and the Temple of Doom' },
-    { title: 'Indiana Jones and the Last Crusade' },
-    { title: 'Beverly Hills Cop' },
-    { title: 'Armageddon' },
-    { title: 'Beverly Hills Cop II' },
-    { title: 'Gladiator' },
-    { title: 'Back to the Future' },
-    { title: 'Predator' },
-    { title: 'The Untouchables' },
-    { title: 'Charlie and the Chocolate Factory' },
-    { title: 'The Lord of the Rings: The Fellowship of the Ring' },
-    { title: 'The Lord of the Rings: The Two Towers' },
-    { title: 'The Lord of the Rings: The Return of the King' }
-  ]
-} */
-    res.status(200).json(data.rows);
+    const data = await Movie.bulkCreate(queryBody);    // const data = await sequelize.query('SELECT title FROM movies.movie')
+    res.status(200).end();
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
     res.status(419).json();
@@ -337,8 +252,6 @@ const createMovies = async (req, res) => {
 };
 
 // createMovies();
-// handleDynamicMovieQuery()
 module.exports = {
   getMovies,
-  handleDynamicMovieQuery,
 }

@@ -11,53 +11,41 @@
   CONSTRAINT pk_movie PRIMARY KEY (movie_id)
 */
 
-const Movie = (sequelize, Sequelize) => sequelize.define("movie", {
-    movie_id: {
+const Food = (sequelize, Sequelize) => sequelize.define("food", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true // Automatically gets converted to SERIAL for postgres
     },
-    title: {
-      type: Sequelize.STRING(1000),
+    name: {
+      type: Sequelize.STRING,
       allowNull: true
     },
-    budget: {
+    protein: {
       type: Sequelize.INTEGER,
       allowNull: true
     },
-    homepage: {
-      type: Sequelize.STRING(1000),
+    calories: {
+      type: Sequelize.INTEGER,
       allowNull: true
     },
-    overview: {
-      type: Sequelize.STRING(1000),
+    fat: {
+      type: Sequelize.INTEGER,
       allowNull: true
     },
-    popularity: {
+    size: {
       type: Sequelize.DECIMAL(12, 6),
-      allowNull: true,
-      validate: {
-        isDecimal: true,
-        max: 150,
-        min: 0,
-      },
-    },
-    release_date: {
-      type: Sequelize.DATE,
       allowNull: true
     },
-    revenue: {
-      type: Sequelize.BIGINT,
+    portion: {
+      type: Sequelize.STRING,
       allowNull: true
     },
-    runtime: {
-      type: Sequelize.INTEGER,
-      validate: {
-        isInt: true
-      },
+    category: {
+      type: Sequelize.STRING,
       allowNull: true
-    }
+    },
   }
 );
 
-module.exports = Movie;
+module.exports = Food;
