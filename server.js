@@ -3,7 +3,6 @@ const compression = require('compression');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 
-const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 8082;
 
 const app = express();
