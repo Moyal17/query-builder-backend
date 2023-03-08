@@ -1,0 +1,65 @@
+DROP TABLE IF EXISTS movies.movie_company;
+
+CREATE TABLE movies.movie_company (
+                                      movie_id INT DEFAULT NULL,
+                                      company_id INT DEFAULT NULL,
+                                      CONSTRAINT fk_mc_comp FOREIGN KEY (company_id) REFERENCES movies.production_company (company_id),
+                                      CONSTRAINT fk_mc_movie FOREIGN KEY (movie_id) REFERENCES movies.movie (movie_id)
+);
+
+
+INSERT INTO movies.movie_company VALUES
+
+                                     (11,1),
+                                     (11,306),
+                                     (12,3),
+                                     (13,4),
+                                     (14,27),
+                                     (14,2721),
+                                     (85,1),
+                                     (85,4),
+                                     (87,1),
+                                     (87,4),
+                                     (89,1),
+                                     (89,4),
+                                     (90,30),
+                                     (90,4),
+                                     (95,11533),
+                                     (95,130),
+                                     (95,9195),
+                                     (96,10288),
+                                     (96,30),
+                                     (96,4),
+                                     (98,14440),
+                                     (98,1645),
+                                     (98,21904),
+                                     (98,21905),
+                                     (98,21906),
+                                     (98,27),
+                                     (98,33),
+
+                                     (105,20448),
+                                     (105,33),
+                                     (105,56),
+                                     (106,1302),
+                                     (106,1885),
+                                     (106,306),
+                                     (106,5263),
+                                     (106,5264),
+                                     (106,840),
+
+                                     (117,4),
+                                     (118,45778),
+                                     (118,55512),
+                                     (118,6194),
+                                     (118,79),
+                                     (118,80),
+                                     (118,8601),
+                                     (120,11),
+                                     (120,12),
+                                     (120,5237),
+                                     (121,11),
+                                     (121,12),
+                                     (121,5237),
+                                     (122,11),
+                                     (122,12);
