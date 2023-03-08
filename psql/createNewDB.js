@@ -1,5 +1,6 @@
 const db = require("../models");
 const page = 'createNewDB';
+
 const movieDb = [
   {
     "movie_id": 11,
@@ -210,6 +211,7 @@ const createMovies = async () => {
     res.status(419).json();
   }
 };
+
 const foodDb = [
   {
     id: 10,
@@ -337,11 +339,15 @@ const createFood = async () => {
   try {
     // Save Query in database
     const data = await db.food.bulkCreate(foodDb);    // const data = await sequelize.query('SELECT title FROM movies.movie')
+    const response = data.map((obj) => obj.dataValues);
+    console.log('createFood:\n', response)
+
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
     res.status(419).json();
   }
 };
+
 const actorsDb = [
   {
     id: 10,
@@ -459,10 +465,14 @@ const createActors = async (req, res) => {
   try {
     // Save Query in database
     const data = await db.actor.bulkCreate(actorsDb);    // const data = await sequelize.query('SELECT title FROM movies.movie')
-
+    const response = data.map((obj) => obj.dataValues);
+    console.log('createActors:\n', response)
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
     res.status(419).json();
   }
 };
 
+// createFood()
+// createActors()
+// createMovies()

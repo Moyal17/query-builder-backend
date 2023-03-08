@@ -34,7 +34,7 @@ const Food = (sequelize, Sequelize) => sequelize.define("food", {
       allowNull: true
     },
     size: {
-      type: Sequelize.DECIMAL(12, 6),
+      type: Sequelize.INTEGER,
       allowNull: true
     },
     portion: {

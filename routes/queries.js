@@ -10,10 +10,10 @@ module.exports = {
       queryController.getQueryById,
       queryController.executeQuery);
     router.post('/createQuery',
-      utils.validateParamExists('title description jsonQuery model'.split(' '), 'body'),
+      utils.validateParamExists('title jsonQuery model'.split(' '), 'body'),
       queryController.createQuery);
     router.put('/updateQuery',
-      utils.validateParamExists('id title description jsonQuery model'.split(' '), 'body'),
+      utils.validateParamExists('id title jsonQuery model'.split(' '), 'body'),
       queryController.updateQuery);
     router.delete('/removeQuery/:id',
       utils.validateParamExists('id'.split(' '), 'params'),
