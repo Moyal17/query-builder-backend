@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   PORT: process.env.PORT || 8082,
   /** DATABASE */
@@ -27,3 +29,4 @@ module.exports = {
     secret: "our-secret-key"
   }
 };
+
