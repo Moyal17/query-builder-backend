@@ -9,11 +9,16 @@ const utils = require('../config/utils');
 const getUserQueries = async (req, res) => {
   const func = 'getUserQueries';
   try {
-    const queryData = await Query.findAll()
-    const response = queryData.map((obj) => {
-      obj.dataValues.jsonQuery = JSON.parse(obj.dataValues.jsonQuery);
-      return obj.dataValues;
-    });
+    let response = [];
+    const queryData = await Query.findAll({ where: { userId: req.user.id }})
+    if (queryData && queryData.length > 0) {
+      response = queryData.map((obj) => {
+        const query = obj.dataValues;
+        query.jsonQuery = JSON.parse(query.jsonQuery);
+        const { userId, updatedAt, ...restQuery } = query;
+        return restQuery;
+      });
+    }
     res.status(200).json(response);
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
@@ -63,6 +68,7 @@ const createQuery = async (req, res) => {
     const queryBody = {
       ...req.body,
       jsonQuery: JSON.stringify(payloadJson),
+      userId: req.user.id
     };
     // Save Query in database
     const data = await Query.create(queryBody)
@@ -97,19 +103,6 @@ const removeQuery = async (req, res) => {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
     res.status(419).send({message: e.message});
   }
-};
-
-// Find all published Queries
-const findAllPublished = (req, res) => {
-  Query.findAll({ where: { published: true } })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving books."
-      });
-    });
 };
 
 module.exports = {

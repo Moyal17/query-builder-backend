@@ -5,6 +5,10 @@ const queryController = require('../controllers/queryController');
 
 module.exports = {
   publicRoutes: (function () {
+    return router;
+  }()),
+  // Secure routes
+  apiRoutes: (function () {
     router.get('/executeQuery',
       utils.validateParamExists('id', 'query'),
       queryController.getQueryById,
@@ -18,10 +22,6 @@ module.exports = {
     router.delete('/removeQuery/:id',
       utils.validateParamExists('id'.split(' '), 'params'),
       queryController.removeQuery);
-    return router;
-  }()),
-  // Secure routes
-  apiRoutes: (function () {
     return router;
   }())
 };
