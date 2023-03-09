@@ -1,10 +1,8 @@
-(function () {
-  const publicRouter = require('express').Router();
+const publicRouter = require('express').Router();
 
-  const publicRouterFiles = 'movies users queries';
-  publicRouterFiles.split(' ').forEach((routeName) => {
-    publicRouter.use(`/${routeName}`, require(`./${routeName}`).publicRoutes);
-  });
+const publicRouterFiles = 'users queries';
+publicRouterFiles.split(' ').forEach((routeName) => {
+  publicRouter.use(`/${routeName}`, require(`./${routeName}`).publicRoutes);
+});
 
-  module.exports = publicRouter;
-})();
+module.exports = publicRouter;

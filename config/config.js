@@ -26,7 +26,7 @@ module.exports = {
 
   /** AUTH KEY */
   auth: {
-    secret: "our-secret-key"
+    secret: "QU3RYBU1LD3RS3CR3T"
   }
 };
 

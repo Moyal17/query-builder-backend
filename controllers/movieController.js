@@ -36,7 +36,7 @@ const getMovies = async (req, res) => {
     res.status(200).json(data.rows);
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 const createMovies = async (req, res) => {
@@ -247,7 +247,7 @@ const createMovies = async (req, res) => {
     res.status(200).end();
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 

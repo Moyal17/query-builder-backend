@@ -5,12 +5,15 @@ const queryController = require('../controllers/queryController');
 
 module.exports = {
   publicRoutes: (function () {
-    router.get('/login', userController.loginUser);
+    router.post('/login', userController.loginUser);
+    router.post('/register', userController.checkIfUserExist, userController.registerUser);
+    router.get('/checkIfLoggedIn', userController.checkIfLoggedIn);
     router.get('/getUserQueries', queryController.getUserQueries);
     return router;
   }()),
   // Secure routes
   apiRoutes: (function () {
+    router.get('/getUserQueries', queryController.getUserQueries);
     return router;
   }())
 };

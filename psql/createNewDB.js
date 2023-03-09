@@ -206,9 +206,10 @@ const createMovies = async () => {
   try {
     // Save Query in database
     const data = await db.movie.bulkCreate(movieDb);    // const data = await sequelize.query('SELECT title FROM movies.movie')
+    const response = data.map((obj) => obj.dataValues);
+    console.log('Create Movies:\n', response)
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
   }
 };
 
@@ -341,10 +342,8 @@ const createFood = async () => {
     const data = await db.food.bulkCreate(foodDb);    // const data = await sequelize.query('SELECT title FROM movies.movie')
     const response = data.map((obj) => obj.dataValues);
     console.log('createFood:\n', response)
-
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
   }
 };
 
@@ -469,7 +468,6 @@ const createActors = async (req, res) => {
     console.log('createActors:\n', response)
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
   }
 };
 

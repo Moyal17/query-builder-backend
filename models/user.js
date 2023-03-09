@@ -5,18 +5,21 @@ const User = (sequelize, Sequelize) => sequelize.define("user", {
       autoIncrement: true,
       primaryKey: true
     },
-    username: {
+    name: {
       type: Sequelize.STRING,
-      unique: true
+      allowNull:false
     },
     email: {
       type: Sequelize.STRING,
+      unique: true,
+      allowNull:false,
       validate: {
         isEmail: true
       }
     },
     password: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull:false
     }
   }
 );

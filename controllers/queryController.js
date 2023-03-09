@@ -17,7 +17,7 @@ const getUserQueries = async (req, res) => {
     res.status(200).json(response);
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 
@@ -34,11 +34,11 @@ const getQueryById = async (req, res, next) => {
       next();
     } else {
       console.log(`${page}, ${func} || cant parseInt`);
-      res.status(419).json();
+      res.status(419).send({message: 'cant parse query Id'});
     }
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 
@@ -52,7 +52,7 @@ const executeQuery = async (req, res) => {
     res.status(200).json(response);
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 
@@ -69,7 +69,7 @@ const createQuery = async (req, res) => {
     res.status(200).json(data.dataValues);
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 
@@ -83,7 +83,7 @@ const updateQuery = async (req, res) => {
     res.status(200).end();
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 
@@ -95,7 +95,7 @@ const removeQuery = async (req, res) => {
     res.status(200).end();
   } catch (e) {
     console.error(`${page}, ${func} || ${JSON.stringify(e.message)}`);
-    res.status(419).json();
+    res.status(419).send({message: e.message});
   }
 };
 
