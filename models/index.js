@@ -42,6 +42,5 @@ db.query = require("./query.js")(sequelize, Sequelize);
 db.movie = require('./movie.js')(sequelize, Sequelize);
 db.actor = require('./actors.js')(sequelize, Sequelize);
 db.food = require('./food.js')(sequelize, Sequelize);
-
 // sequelize.sync();
 module.exports = db;

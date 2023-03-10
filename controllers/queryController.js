@@ -1,4 +1,3 @@
-const hstore = require('pg-hstore')();
 const db = require("../models");
 const QueryStringParser = require("../config/QueryStringParser").QueryStringParser;
 const Query = db.query;

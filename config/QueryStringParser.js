@@ -1,4 +1,5 @@
 const db = require("../models");
+const moment = require("moment");
 const Op = db.Op;
 
 const conditionOp = {
@@ -21,15 +22,15 @@ const operators = {
   notIn: Op.notIn,            // [Op.notIn]: [1, 2]
 };
 
-const complicatedOpMap = ['between', 'notBetween', 'in', 'notIn'];
-
+const datesOpMap = ['between', 'notBetween'];
 const nullOp = ['isNull', 'isNotNull'];
 
 const ruleLogic = (arr, rule) => {
-  if (complicatedOpMap.indexOf(rule.operator) !== -1){
-    arr.push({[rule.fieldName]: { [operators[rule.operator]]: [rule.value]}})
-  } else if (nullOp.indexOf(rule.operator) !== -1) {
+  if (nullOp.indexOf(rule.operator) !== -1) {
     arr.push({[rule.fieldName]: { [operators[rule.operator]]: null}})
+  } else if (datesOpMap.indexOf(rule.operator) !== -1) {
+    const value = [moment(rule.value[0]).startOf('day').format(), moment(rule.value[1]).startOf('day').format()];
+    arr.push({[rule.fieldName]: { [operators[rule.operator]]: value }})
   } else {
     arr.push({[rule.fieldName]: { [operators[rule.operator]]: rule.value}})
   }
